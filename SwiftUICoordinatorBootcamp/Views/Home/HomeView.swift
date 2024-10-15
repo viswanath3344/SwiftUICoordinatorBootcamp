@@ -12,10 +12,6 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
-            Spacer()
-            Text("Home!")
-         
-            Spacer()
             
             Button("Authenticate") {
                 coordinator.present(.login)
@@ -24,15 +20,34 @@ struct HomeView: View {
             .buttonStyle(.borderedProminent)
         }
         .toolbar {
-            Button("Setting") {
-                coordinator.present(.settings)
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Setting") {
+                    coordinator.present(.settings)
+                }
             }
             
-            Spacer()
-            
-            Button("Privacy") {
-                coordinator.present(.privacy)
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("Privacy") {
+                    coordinator.present(.privacy)
+                }
             }
         }
+        .navigationTitle("Home")
+        .navigationBarTitleDisplayMode(.inline)
+//       .toolbarTitleMenu {
+//            VStack {
+//                NavigationLink(destination: Text("Screen 1")) {
+//                    Text("Screen 1")
+//                }
+//                
+//                NavigationLink(destination: Text("Screen 1")) {
+//                    Text("Screen 1")
+//                }
+//            }
     }
+}
+
+
+#Preview {
+    HomeView().environmentObject(Coordinator())
 }
